@@ -1,5 +1,6 @@
 package model;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import observer.Observer;
@@ -16,7 +17,8 @@ public abstract class AbstractModel implements Observable {
     public abstract void reset();
 
     public abstract TruffleField getTruffleField();
-    public abstract void save();
+    public abstract void save(String file) throws IOException;
+    public abstract void open(String file) throws IOException;
 
     //Implémentation du pattern observer
     public void addObserver(Observer obs) {

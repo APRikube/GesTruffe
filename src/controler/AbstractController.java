@@ -1,6 +1,7 @@
 package controler;
 
 import java.awt.*;
+import java.io.IOException;
 import java.util.Date;
 
 import model.AbstractModel;
@@ -25,8 +26,12 @@ public abstract class AbstractController {
         //System.out.println(model.getTruffleField().getTruffleOakWithId(truffleOakId).toString());
     }
 
-    public void save() {
-        model.save();
+    public void save(String file) throws IOException {
+        model.save(file);
+    }
+
+    public void open(String file) throws IOException {
+        model.open(file);
     }
 
     //Efface

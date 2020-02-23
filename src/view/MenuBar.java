@@ -8,8 +8,11 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 public class MenuBar extends JMenuBar {
+
+    private String openedFile = "";
 
     public MenuBar(AbstractController controller) {
         JMenu file = new JMenu(ViewConstants.file);
@@ -21,13 +24,13 @@ public class MenuBar extends JMenuBar {
         JMenuItem open = new JMenuItem(new AbstractAction(ViewConstants.open) {
             public void actionPerformed(ActionEvent actionEvent) {
                 JFileChooser chooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers CSV", "csv", "CSV");
+                FileNameExtensionFilter filter = new FileNameExtensionFilter("Fichiers CSV", "xml", "XML");
                 chooser.setFileFilter(filter);
                 int returnVal = chooser.showOpenDialog(null);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     //Process d'ouverture du fichier
-                    System.out.println("Vous avez choisi d'ouvrir le fichier : " +
-                            chooser.getSelectedFile().getName());
+                    openedFile = chooser.getSelectedFile().getName();
+                    System.out.println("Vous avez choisi d'ouvrir le fichier : " + openedFile);
                 }
             }
         });
@@ -37,11 +40,27 @@ public class MenuBar extends JMenuBar {
         JMenuItem save = new JMenuItem(new AbstractAction(ViewConstants.save) {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                controller.save();
+                try {
+                    controller.save(openedFile);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
         save.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, InputEvent.CTRL_DOWN_MASK));
         file.add(save);
+
+        /*JMenuItem saveAs = new JMenuItem(new AbstractAction(ViewConstants.saveAs) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    controller.save(openedFile);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        file.add(saveAs);*/
 
         this.add(file);
 

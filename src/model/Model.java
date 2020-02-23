@@ -1,5 +1,7 @@
 package model;
 
+import java.io.*;
+
 public class Model extends AbstractModel{
 
     @Override
@@ -7,9 +9,23 @@ public class Model extends AbstractModel{
         return truffleField;
     }
 
-    public void save() {
+    public void save(String file) throws IOException {
         // Save in file
-        System.out.println(truffleField.toString());
+        String data = "<?xml version = \"1.0\" encoding=\"UTF-8\" standalone=\"yes\" ?>\n" + truffleField.toString();
+        BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+        writer.write(data);
+        writer.close();
+    }
+
+    public void open(String file) throws IOException {
+        /*BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line = reader.readLine();
+        while (line != null) {
+            line = reader.readLine();
+            switch (line) {
+
+            }
+        }*/
     }
 
     //Réinitialise tout

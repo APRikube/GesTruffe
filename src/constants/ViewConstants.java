@@ -1,6 +1,7 @@
 package constants;
 
 public final class ViewConstants {
+
     private ViewConstants() {
     }
 
@@ -8,7 +9,8 @@ public final class ViewConstants {
     public static final String file = "Fichier";
     public static final String newP = "Nouveau";
     public static final String open = "Ouvrir";
-    public static final String save = "Sauvegarder";
+    public static final String save = "Enregistrer";
+    public static final String saveAs = "Enregistrer sous";
     // Home menu
     public static final String home = "Accueil";
     public static final String paste = "Coller";
