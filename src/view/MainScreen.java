@@ -30,7 +30,8 @@ public class MainScreen extends JFrame implements Observer {
 
     //Implémentation du pattern observer
     public void update(String str) {
-        screen.setText(str);
+        repaint();
+        //screen.setText(str);
     }
 
 }
