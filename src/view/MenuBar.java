@@ -12,8 +12,6 @@ import java.io.IOException;
 
 public class MenuBar extends JMenuBar {
 
-    private String openedFile = "";
-
     public MenuBar(AbstractController controller) {
         JMenu file = new JMenu(ViewConstants.file);
 
@@ -29,8 +27,12 @@ public class MenuBar extends JMenuBar {
                 int returnVal = chooser.showOpenDialog(null);
                 if (returnVal == JFileChooser.APPROVE_OPTION) {
                     //Process d'ouverture du fichier
-                    openedFile = chooser.getSelectedFile().getName();
-                    System.out.println("Vous avez choisi d'ouvrir le fichier : " + openedFile);
+                    //System.out.println("Vous avez choisi d'ouvrir le fichier : " + openedFile);
+                    try {
+                        controller.open(chooser.getSelectedFile().getName());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         });
@@ -41,7 +43,7 @@ public class MenuBar extends JMenuBar {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    controller.save(openedFile);
+                    controller.save();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

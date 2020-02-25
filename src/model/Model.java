@@ -1,5 +1,11 @@
 package model;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
 
 public class Model extends AbstractModel{
@@ -18,6 +24,20 @@ public class Model extends AbstractModel{
     }
 
     public void open(String file) throws IOException {
+        try {
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(file);
+            doc.getDocumentElement().normalize();
+            NodeList truffleOaks = doc.getElementsByTagName("TruffleOaks");
+            for(int i = 0; i < truffleOaks.getLength() ; i++) {
+                Node node = truffleOaks.item(i);
+                System.out.println(node);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();;
+        }
         /*BufferedReader reader = new BufferedReader(new FileReader(file));
         String line = reader.readLine();
         while (line != null) {

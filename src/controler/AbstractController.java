@@ -11,6 +11,7 @@ import model.TruffleOak;
 public abstract class AbstractController {
 
     protected AbstractModel model;
+    private String openedFile;
 
     public AbstractController(AbstractModel model) {
         this.model = model;
@@ -26,12 +27,13 @@ public abstract class AbstractController {
         //System.out.println(model.getTruffleField().getTruffleOakWithId(truffleOakId).toString());
     }
 
-    public void save(String file) throws IOException {
-        model.save(file);
+    public void save() throws IOException {
+        model.save(openedFile);
     }
 
     public void open(String file) throws IOException {
-        model.open(file);
+        openedFile = file;
+        model.open(openedFile);
     }
 
     //Efface
