@@ -59,17 +59,17 @@ public class TruffleOak {
     public String toString() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder data = new StringBuilder();
-        data.append("<TruffleOak>\n");
-        data.append("<posX>").append(posX).append("</posX>\n");
-        data.append("<posY>").append(posY).append("</posY>\n");
-        data.append("<plantedOn>").append(formatter.format(plantedOn)).append("</plantedOn>\n");
-        data.append("<specie>").append(specie).append("</specie>\n");
-        data.append("<Truffles>\n");
+        data.append("\t<TruffleOak>\n");
+        data.append("\t\t<posX>").append(posX).append("</posX>\n");
+        data.append("\t\t<posY>").append(posY).append("</posY>\n");
+        data.append("\t\t<plantedOn>").append(formatter.format(plantedOn)).append("</plantedOn>\n");
+        data.append("\t\t<specie>").append(specie).append("</specie>\n");
+        data.append("\t\t<Truffles>\n");
         for(Truffle t:truffles) {
             data.append(t.toString());
         }
-        data.append("</Truffles>\n");
-        data.append("</TruffleOak>\n");
+        data.append("\t\t</Truffles>\n");
+        data.append("\t</TruffleOak>\n");
         return data.toString();
     }
 
