@@ -4,7 +4,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Vector;
 
-public class TruffleOak {
+public class TruffleTree {
 
     private double posX;
     private double posY;
@@ -14,7 +14,7 @@ public class TruffleOak {
     private int id;
     private Vector<Truffle> truffles = new Vector<>();
 
-    public TruffleOak(double posX, double posY, Date plantedOn, String specie) {
+    public TruffleTree(double posX, double posY, Date plantedOn, String specie) {
         this.posX = posX;
         this.posY = posY;
         this.plantedOn = plantedOn;

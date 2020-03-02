@@ -15,6 +15,7 @@ public class ContextMenu extends JPopupMenu {
 
     private JMenuItem newTree;
     private JMenuItem addTruffle;
+    private JMenuItem seeTruffles;
     private JMenuItem modify;
     private JMenuItem delete;
     private Panel panel;
@@ -27,13 +28,15 @@ public class ContextMenu extends JPopupMenu {
             @Override
             public void actionPerformed(ActionEvent e) {
                 CreateTreeWindow tw = new CreateTreeWindow(panel, controller, new Point(panel.getMousePosition()));
-
             }
         });
         this.add(newTree);
 
         addTruffle = new JMenuItem(ViewConstants.addTruffle);
         this.add(addTruffle);
+
+        seeTruffles = new JMenuItem(ViewConstants.seeTruffles);
+        this.add(seeTruffles);
 
         modify = new JMenuItem(ViewConstants.modify);
         this.add(modify);
@@ -48,6 +51,7 @@ public class ContextMenu extends JPopupMenu {
             case CLICK:
                 newTree.setVisible(true);
                 addTruffle.setVisible(false);
+                seeTruffles.setVisible(false);
                 modify.setVisible(false);
                 delete.setVisible(false);
                 break;
@@ -60,6 +64,7 @@ public class ContextMenu extends JPopupMenu {
                     }
                 });
                 addTruffle.setVisible(true);
+                seeTruffles.setVisible(true);
                 modify.setVisible(true);
                 delete.setVisible(true);
                 break;

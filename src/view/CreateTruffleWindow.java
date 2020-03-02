@@ -34,7 +34,7 @@ public class CreateTruffleWindow {
                 ViewConstants.trufflePopupTitle, JOptionPane.OK_CANCEL_OPTION);
         if (result == JOptionPane.OK_OPTION) {
             try {
-                controller.createTruffle(treeId, Integer.parseInt(weight.getText()), new Date());
+                controller.createTruffle(treeId, Double.parseDouble(weight.getText()), new Date());
             } catch (NumberFormatException e) {
                 // Popoup d'erreur "Le poids doit être un nombre"
                 System.out.println("NaN");

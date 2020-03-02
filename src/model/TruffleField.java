@@ -3,27 +3,27 @@ package model;
 import java.util.Vector;
 
 public class TruffleField {
-    public Vector<TruffleOak> truffleOaks = new Vector<>();
+    public Vector<TruffleTree> truffleTrees = new Vector<>();
 
     public TruffleField() {
     }
 
-    public void addTruffleOaks(TruffleOak truffleOak) {
-        truffleOaks.add(truffleOak);
+    public void addTruffleOaks(TruffleTree truffleTree) {
+        truffleTrees.add(truffleTree);
     }
 
-    public Vector<TruffleOak> getTruffleOaks() {
-        return truffleOaks;
+    public Vector<TruffleTree> getTruffleTrees() {
+        return truffleTrees;
     }
 
-    public TruffleOak getTruffleOakWithId(int id) {
-        return truffleOaks.get(id);
+    public TruffleTree getTruffleOakWithId(int id) {
+        return truffleTrees.get(id);
     }
 
     public String toString() {
         StringBuilder data = new StringBuilder();
         data.append("<TruffleOaks>\n");
-        for (TruffleOak t:truffleOaks) {
+        for (TruffleTree t: truffleTrees) {
             data.append(t.toString());
         }
         data.append("</TruffleOaks>\n");

@@ -18,7 +18,7 @@ public class MainScreen extends JFrame implements Observer {
         this.setLocationRelativeTo(null);
         this.setResizable(true);
         Panel container = new Panel(controller);
-        menuBar = new MenuBar(controller);
+        menuBar = new MenuBar(controller, container);
         initComposant();
         this.setContentPane(container);
         this.setVisible(true);

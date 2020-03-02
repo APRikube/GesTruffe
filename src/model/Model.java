@@ -9,6 +9,9 @@ import org.w3c.dom.NodeList;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.*;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 public class Model extends AbstractModel{
 
@@ -25,45 +28,59 @@ public class Model extends AbstractModel{
         writer.close();
     }
 
-    public void open(String file) throws IOException {
+    public void open(String file) {
         try {
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
             DocumentBuilder db = dbf.newDocumentBuilder();
             Document doc = db.parse(file);
             doc.getDocumentElement().normalize();
             NodeList truffleOaks = doc.getElementsByTagName("TruffleOak");
+            TruffleField truffleField = new TruffleField();
             for(int i = 0; i < truffleOaks.getLength() ; i++) {
                 Node node = truffleOaks.item(i);
                 //System.out.println(node.getNodeName());
                 if(node.getNodeType() == node.ELEMENT_NODE) {
-                    Element truffleOak = (Element) node;
-                    System.out.println("Pos x " + truffleOak.getElementsByTagName("posX").item(0).getTextContent());
-                    System.out.println("Pos y " + truffleOak.getElementsByTagName("posY").item(0).getTextContent());
-                    System.out.println("Planted on " + truffleOak.getElementsByTagName("plantedOn").item(0).getTextContent());
-                    System.out.println("Specie " + truffleOak.getElementsByTagName("specie").item(0).getTextContent());
-                    NodeList truffles = truffleOak.getElementsByTagName(ModelConstants.truffle);
+                    TruffleTree truffleTree;
+                    Element truffleOakNode = (Element) node;
+                    truffleTree = readTruffleOak(truffleOakNode);
+                    NodeList truffles = truffleOakNode.getElementsByTagName(ModelConstants.truffle);
                     for(int j = 0 ; j < truffles.getLength() ; j++) {
                         Node node1 = truffles.item(j);
                         if(node1.getNodeType() == node1.ELEMENT_NODE) {
-                            Element truffle = (Element) node1;
-                            System.out.println("Weight " + truffle.getElementsByTagName(ModelConstants.weight).item(0).getTextContent());
-                            System.out.println("Harvested on " + truffle.getElementsByTagName(ModelConstants.harvestedOn).item(0).getTextContent());
+                            Truffle truffle;
+                            Element truffleNode = (Element) node1;
+                            truffle = readTruffle(truffleNode);
+                            truffleTree.addTruffles(truffle);
                         }
                     }
+                    truffleField.addTruffleOaks(truffleTree);
+                    this.truffleField = truffleField;
                 }
             }
 
         } catch (Exception e) {
             e.printStackTrace();;
         }
-        /*BufferedReader reader = new BufferedReader(new FileReader(file));
-        String line = reader.readLine();
-        while (line != null) {
-            line = reader.readLine();
-            switch (line) {
+    }
 
-            }
-        }*/
+    public TruffleTree readTruffleOak(Element truffleOakNode) throws ParseException {
+        DateFormat formatFR = new SimpleDateFormat("dd/MM/yyyy");
+        /*System.out.println("Pos x " + truffleOakNode.getElementsByTagName("posX").item(0).getTextContent());
+        System.out.println("Pos y " + truffleOakNode.getElementsByTagName("posY").item(0).getTextContent());
+        System.out.println("Planted on " + truffleOakNode.getElementsByTagName("plantedOn").item(0).getTextContent());
+        System.out.println("Specie " + truffleOakNode.getElementsByTagName("specie").item(0).getTextContent());*/
+        return new TruffleTree(Double.parseDouble(truffleOakNode.getElementsByTagName("posX").item(0).getTextContent()),
+                Double.parseDouble(truffleOakNode.getElementsByTagName("posY").item(0).getTextContent()),
+                formatFR.parse(truffleOakNode.getElementsByTagName("plantedOn").item(0).getTextContent()),
+                truffleOakNode.getElementsByTagName("specie").item(0).getTextContent());
+    }
+
+    public Truffle readTruffle(Element truffleNode) throws ParseException {
+        DateFormat formatFR = new SimpleDateFormat("dd/MM/yyyy");
+        /*System.out.println("Weight " + truffleNode.getElementsByTagName(ModelConstants.weight).item(0).getTextContent());
+        System.out.println("Harvested on " + truffleNode.getElementsByTagName(ModelConstants.harvestedOn).item(0).getTextContent());*/
+        return new Truffle(Double.parseDouble(truffleNode.getElementsByTagName(ModelConstants.weight).item(0).getTextContent()),
+                formatFR.parse(truffleNode.getElementsByTagName(ModelConstants.harvestedOn).item(0).getTextContent()));
     }
 
     //Réinitialise tout

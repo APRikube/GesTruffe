@@ -6,7 +6,7 @@ import java.util.Date;
 
 import model.AbstractModel;
 import model.Truffle;
-import model.TruffleOak;
+import model.TruffleTree;
 
 public abstract class AbstractController {
 
@@ -18,11 +18,10 @@ public abstract class AbstractController {
     }
 
     public void createTree(Point clickedArea, Date plantedOn, String specie) {
-        TruffleOak truffleOak = new TruffleOak(clickedArea.getX(), clickedArea.getY(), plantedOn, specie);
-        model.getTruffleField().addTruffleOaks(truffleOak);
+        model.getTruffleField().addTruffleOaks(new TruffleTree(clickedArea.getX(), clickedArea.getY(), plantedOn, specie));
     }
 
-    public void createTruffle(int truffleOakId, int weight, Date date) {
+    public void createTruffle(int truffleOakId, double weight, Date date) {
         model.getTruffleField().getTruffleOakWithId(truffleOakId).addTruffles(new Truffle(weight, date));
         //System.out.println(model.getTruffleField().getTruffleOakWithId(truffleOakId).toString());
     }
@@ -34,6 +33,10 @@ public abstract class AbstractController {
     public void open(String file) throws IOException {
         openedFile = file;
         model.open(openedFile);
+    }
+
+    public AbstractModel getModel() {
+        return model;
     }
 
     //Efface

@@ -2,17 +2,22 @@ package view;
 
 import constants.ViewConstants;
 import controler.AbstractController;
+import model.Truffle;
+import model.TruffleField;
+import model.TruffleTree;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Vector;
 
 public class MenuBar extends JMenuBar {
 
-    public MenuBar(AbstractController controller) {
+    public MenuBar(AbstractController controller, Panel panel) {
         JMenu file = new JMenu(ViewConstants.file);
 
         JMenuItem newP = new JMenuItem(ViewConstants.newP);
@@ -30,6 +35,16 @@ public class MenuBar extends JMenuBar {
                     //System.out.println("Vous avez choisi d'ouvrir le fichier : " + openedFile);
                     try {
                         controller.open(chooser.getSelectedFile().getName());
+                        Vector<TruffleTree> truffleTreesToDraw = controller.getModel().getTruffleField().getTruffleTrees();
+                        for(TruffleTree truffleTree : truffleTreesToDraw) {
+                            DrawTree drawTree = new DrawTree(new Point((int) truffleTree.getPosX(), (int) truffleTree.getPosY()),
+                                100, 100, (Graphics2D) panel.getGraphics(), panel);
+                            Vector<Truffle> trufflesToAdd = truffleTree.getTruffles();
+                            for(Truffle truffle : trufflesToAdd) {
+                                controller.createTruffle(drawTree.getId(), truffle.getWeight(), truffle.getHarvedstedOn());
+                                //controller.createTruffle(treeId, Integer.parseInt(weight.getText()), new Date());
+                            }
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -67,7 +82,13 @@ public class MenuBar extends JMenuBar {
         this.add(file);
 
         JMenu home = new JMenu(ViewConstants.home);
-        JMenuItem paste = new JMenuItem(ViewConstants.paste);
+        //JMenuItem paste = new JMenuItem(ViewConstants.paste);
+        JMenuItem paste = new JMenuItem(new AbstractAction(ViewConstants.paste) {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         JMenuItem copy = new JMenuItem(ViewConstants.copy);
         JMenuItem cut = new JMenuItem(ViewConstants.cut);
 

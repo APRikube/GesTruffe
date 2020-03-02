@@ -19,6 +19,7 @@ public final class ViewConstants {
     // Context menu
     public static final String newTree = "Nouvel arbre";
     public static final String addTruffle = "Ajouter une truffe";
+    public static final String seeTruffles = "Voir les truffes";
     public static final String modify = "Modifier";
     public static final String delete = "Supprimer";
     // Popup create tree
