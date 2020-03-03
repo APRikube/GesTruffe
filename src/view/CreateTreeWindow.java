@@ -16,8 +16,8 @@ public class CreateTreeWindow{
     Panel mainWindow;
     AbstractController controller;
     DateFormat formatFR = new SimpleDateFormat("dd/MM/yyyy");
-    JTextField plantedOn = new JFormattedTextField(formatFR);
 
+    JTextField plantedOn = new JFormattedTextField(formatFR);
     JTextField specie = new JTextField(20);
 
     public CreateTreeWindow(Panel panel, AbstractController controller, Point mousePosition) {

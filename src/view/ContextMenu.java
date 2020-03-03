@@ -64,6 +64,12 @@ public class ContextMenu extends JPopupMenu {
                     }
                 });
                 addTruffle.setVisible(true);
+                seeTruffles.setAction(new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent actionEvent) {
+
+                    }
+                });
                 seeTruffles.setVisible(true);
                 modify.setVisible(true);
                 delete.setVisible(true);
