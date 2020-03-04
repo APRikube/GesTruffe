@@ -13,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.InputEvent;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.Vector;
 
 public class MenuBar extends JMenuBar {
@@ -39,7 +40,8 @@ public class MenuBar extends JMenuBar {
                         for(TruffleTree truffleTree : truffleTreesToDraw) {
                             DrawTree drawTree = new DrawTree(new Point((int) truffleTree.getPosX(), (int) truffleTree.getPosY()),
                                 100, 100, (Graphics2D) panel.getGraphics(), panel);
-                            Vector<Truffle> trufflesToAdd = truffleTree.getTruffles();
+                            Vector<Truffle> truffles = truffleTree.getTruffles();
+                            Vector<Truffle> trufflesToAdd = (Vector<Truffle>) truffles.clone();
                             for(Truffle truffle : trufflesToAdd) {
                                 controller.createTruffle(drawTree.getId(), truffle.getWeight(), truffle.getHarvedstedOn());
                                 //controller.createTruffle(treeId, Integer.parseInt(weight.getText()), new Date());
