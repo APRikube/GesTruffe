@@ -30,4 +30,8 @@ public final class ViewConstants {
     public static final String harvestedOn = "Récoltée le";
     public static final String weight = "Poids (en g)";
     public static final String trufflePopupTitle = "Poids (en g)";
+    // Popup show truffle info
+    public static final String weightInfo = "Poids (en g)";
+    public static final String dateInfo = "Récoltée le";
+    public static final String truffleInfoTitle = "";
 }

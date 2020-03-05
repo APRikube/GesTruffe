@@ -40,12 +40,12 @@ public class MenuBar extends JMenuBar {
                         for(TruffleTree truffleTree : truffleTreesToDraw) {
                             DrawTree drawTree = new DrawTree(new Point((int) truffleTree.getPosX(), (int) truffleTree.getPosY()),
                                 100, 100, (Graphics2D) panel.getGraphics(), panel);
-                            Vector<Truffle> truffles = truffleTree.getTruffles();
+                            /*Vector<Truffle> truffles = truffleTree.getTruffles();
                             Vector<Truffle> trufflesToAdd = (Vector<Truffle>) truffles.clone();
                             for(Truffle truffle : trufflesToAdd) {
                                 controller.createTruffle(drawTree.getId(), truffle.getWeight(), truffle.getHarvedstedOn());
                                 //controller.createTruffle(treeId, Integer.parseInt(weight.getText()), new Date());
-                            }
+                            }*/
                         }
                     } catch (IOException e) {
                         e.printStackTrace();

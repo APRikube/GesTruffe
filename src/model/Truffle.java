@@ -7,11 +7,11 @@ import java.util.Date;
 
 public class Truffle {
     private double weight;
-    private Date harvedstedOn;
+    private Date harvestedOn;
 
-    public Truffle(double weight, Date harvedstedOn) {
+    public Truffle(double weight, Date harvestedOn) {
         this.weight = weight;
-        this.harvedstedOn = harvedstedOn;
+        this.harvestedOn = harvestedOn;
     }
 
     public String toString() {
@@ -19,7 +19,7 @@ public class Truffle {
         StringBuilder data = new StringBuilder();
         data.append("\t\t\t<").append(ModelConstants.truffle).append(">\n");
         data.append("\t\t\t\t<").append(ModelConstants.weight).append(">").append(weight).append("</" + ModelConstants.weight + ">\n");
-        data.append("\t\t\t\t<").append(ModelConstants.harvestedOn).append(">").append(formatter.format(harvedstedOn))
+        data.append("\t\t\t\t<").append(ModelConstants.harvestedOn).append(">").append(formatter.format(harvestedOn))
                 .append("</").append(ModelConstants.harvestedOn).append(">\n");
         data.append("\t\t\t</").append(ModelConstants.truffle).append(">\n");
         return data.toString();
@@ -30,6 +30,14 @@ public class Truffle {
     }
 
     public Date getHarvedstedOn() {
-        return harvedstedOn;
+        return harvestedOn;
+    }
+
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public void setHarvestedOn(Date harvestedOn) {
+        this.harvestedOn = harvestedOn;
     }
 }

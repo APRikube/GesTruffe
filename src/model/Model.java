@@ -65,10 +65,6 @@ public class Model extends AbstractModel{
 
     public TruffleTree readTruffleOak(Element truffleOakNode) throws ParseException {
         DateFormat formatFR = new SimpleDateFormat("dd/MM/yyyy");
-        /*System.out.println("Pos x " + truffleOakNode.getElementsByTagName("posX").item(0).getTextContent());
-        System.out.println("Pos y " + truffleOakNode.getElementsByTagName("posY").item(0).getTextContent());
-        System.out.println("Planted on " + truffleOakNode.getElementsByTagName("plantedOn").item(0).getTextContent());
-        System.out.println("Specie " + truffleOakNode.getElementsByTagName("specie").item(0).getTextContent());*/
         return new TruffleTree(Double.parseDouble(truffleOakNode.getElementsByTagName("posX").item(0).getTextContent()),
                 Double.parseDouble(truffleOakNode.getElementsByTagName("posY").item(0).getTextContent()),
                 formatFR.parse(truffleOakNode.getElementsByTagName("plantedOn").item(0).getTextContent()),
@@ -77,8 +73,6 @@ public class Model extends AbstractModel{
 
     public Truffle readTruffle(Element truffleNode) throws ParseException {
         DateFormat formatFR = new SimpleDateFormat("dd/MM/yyyy");
-        /*System.out.println("Weight " + truffleNode.getElementsByTagName(ModelConstants.weight).item(0).getTextContent());
-        System.out.println("Harvested on " + truffleNode.getElementsByTagName(ModelConstants.harvestedOn).item(0).getTextContent());*/
         return new Truffle(Double.parseDouble(truffleNode.getElementsByTagName(ModelConstants.weight).item(0).getTextContent()),
                 formatFR.parse(truffleNode.getElementsByTagName(ModelConstants.harvestedOn).item(0).getTextContent()));
     }
