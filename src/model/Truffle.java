@@ -3,7 +3,9 @@ package model;
 import constants.ModelConstants;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class Truffle {
     private double weight;
@@ -31,6 +33,12 @@ public class Truffle {
 
     public Date getHarvedstedOn() {
         return harvestedOn;
+    }
+
+    public int getYear() {
+        Calendar calendar = new GregorianCalendar();
+        calendar.setTime(harvestedOn);
+        return calendar.get(Calendar.YEAR);
     }
 
     public void setWeight(double weight) {

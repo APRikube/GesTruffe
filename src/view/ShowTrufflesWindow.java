@@ -27,7 +27,7 @@ public class ShowTrufflesWindow {
         JPanel showTruffleWindow = new JPanel();
         showTruffleWindow.setLayout(new BoxLayout(showTruffleWindow, BoxLayout.Y_AXIS));
         for(Truffle truffle : trufflesToShow) {
-            String textButton = truffle.getHarvedstedOn().getYear() + " " + truffle.getWeight() + "g";
+            String textButton = truffle.getYear() + " " + truffle.getWeight() + "g";
             showTruffleWindow.add(new JButton(new AbstractAction(textButton) {
                 @Override
                 public void actionPerformed(ActionEvent actionEvent) {
